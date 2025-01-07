@@ -1,7 +1,7 @@
 {
-  "name": "modern-screenshot",
+  "name": "@snappify/modern-screenshot",
   "type": "module",
-  "version": "4.5.5",
+  "version": "0.0.1",
   "packageManager": "pnpm@9.15.1",
   "description": "Quickly generate image from DOM node using HTML5 canvas and SVG",
   "author": "wxm",
@@ -64,6 +64,7 @@
     "build:lib": "vite build && unbuild",
     "build:worker": "vite build --config vite.worker.config.ts",
     "build": "pnpm build:lib && pnpm build:worker",
+    "prepublishOnly": "pnpm build",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "release": "bumpp package.json --commit \"release: v%s\" --push --all --tag",
     "typecheck": "tsc --noEmit",

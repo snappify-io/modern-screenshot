@@ -7,6 +7,12 @@ export function getDiffStyle(
   const prefixs: string[] = []
   const prefixTree = new Map<string, Map<string, [string, string]>>()
 
+  const fontFeatureSettings = style.getPropertyValue('font-feature-settings')
+  if (fontFeatureSettings !== '"kern"') {
+    // fix for Chrome
+    applyTo('font-feature-settings')
+  }
+
   if (includeStyleProperties) {
     for (const name of includeStyleProperties) {
       applyTo(name)

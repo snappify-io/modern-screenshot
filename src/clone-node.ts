@@ -226,6 +226,24 @@ export async function cloneNode<T extends Node>(
       )
     }
 
+    // fix text wrap issue
+    if (node.tagName === 'P') {
+      // apply on only <p>
+      const { width } = getComputedStyle(node)
+      if (width.includes('.')) {
+        // width eg. 1.78px
+        let floatWidth = Number.parseFloat(width)
+        if (floatWidth % 1 > 0.9) {
+          floatWidth += 1
+        }
+        const newWidth = Math.ceil(floatWidth)
+        cloned.setAttribute(
+          'style',
+          `${cloned.getAttribute('style')};width:${newWidth}px;`,
+        )
+      }
+    }
+
     return cloned
   }
 
